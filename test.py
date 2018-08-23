@@ -1,9 +1,24 @@
-L=[2,-3,3,50]
-
-p=[0]*len(L)
-p[0]=L[0]
-for i in range(1,len(L)):
-	p[i]=max(L[i]+p[i-1],L[i])
-print(max(p))
+def _odd():
+    n = 1
+    while True:
+        n += 2
+        yield n
 
 
+def fil(n):
+    return lambda x: x % n > 0
+
+
+def primes():
+    yield 2
+    it = _odd()
+    while True:
+        n = next(it)
+        yield n
+        it = filter(fil(n), it)
+
+s=0
+for i in range(1,n//2):
+    if i in primes() and (n-i) in primes():
+        s+=1
+print(s)
