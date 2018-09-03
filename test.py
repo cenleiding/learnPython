@@ -1,24 +1,14 @@
-def _odd():
-    n = 1
-    while True:
-        n += 2
-        yield n
+w=[1,2]
+n=[2,1]
+s=[0]
+a=[0]
+for i,ele in enumerate(n):
+    for j in range(ele+1):
+        a.append(j*w[i])
+    s=[x+y for x in s for y in a]
+    a=[0]
 
 
-def fil(n):
-    return lambda x: x % n > 0
 
 
-def primes():
-    yield 2
-    it = _odd()
-    while True:
-        n = next(it)
-        yield n
-        it = filter(fil(n), it)
-
-s=0
-for i in range(1,n//2):
-    if i in primes() and (n-i) in primes():
-        s+=1
-print(s)
+print(len(set(s)))
